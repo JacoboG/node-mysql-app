@@ -14,7 +14,7 @@ app.engine(
   '.hbs', // Nombre cualquiera para el motor
   exphbs({
     defaultLayout: 'main', // Definir el layout por default
-    layoutsDir: path.join(app.get('views'), 'layout'), // Ubicar el directorio de los layouts
+    layoutsDir: path.join(app.get('views'), 'layouts'), // Ubicar el directorio de los layouts
     partialsDir: path.join(app.get('views'), 'partials'), // Ubicar el directorio de vistas parciales
     extname: '.hbs', // Indicar cual será la extensión de las plantillas
     helpers: require('./libs/handlebars') // Para ejecutar funciones dentro de handlebars
