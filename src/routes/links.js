@@ -14,7 +14,13 @@ router.post('/add', async (req, res) => {
         description
     };
     await pool_db.query('INSERT INTO links SET ?', [newLink]);
-    res.send('received');
+    res.redirect('/links');
+});
+
+router.get('/', async (req, res) => {
+    const links =  await pool_db.query('SELECT * FROM links');
+    console.log(links);
+    res.render('links/list', {links: links});
 });
 
 module.exports = router;

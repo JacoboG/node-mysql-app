@@ -1,4 +1,9 @@
-const handlebars = {};
+const { format } = require('timeago.js');
 
+const helpers = {};
 
-module.exports = handlebars
+helpers.timeago = (timestamp) => {
+    return format(timestamp);
+};
+
+module.exports = helpers;
