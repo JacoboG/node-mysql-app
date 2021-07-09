@@ -3,7 +3,7 @@
     <div class="col-md-4 mx-auto">
       <div class="card">
         <div class="card-body">
-          <form action="/links/add" method="post">
+          <form action="/links/edit/{{link.id}}" method="post">
             <div class="form-group">
               <input
                 type="text"
@@ -11,6 +11,7 @@
                 name="title"
                 placeholder="Title"
                 autofocus
+                value="{{link.title}}"
               />
             </div>
             <div class="form-group">
@@ -19,6 +20,7 @@
                 class="form-control"
                 name="url"
                 placeholder="URL"
+                value="{{link.url}}"
               />
             </div>
             <div class="form-group">
@@ -27,7 +29,7 @@
                 rows="2"
                 class="form-control"
                 placeholder="Description"
-              ></textarea>
+              >{{link.description}}</textarea>
             </div>
             <div class="form-group">
               <button class="btn btn-success btn-block">Save</button>
