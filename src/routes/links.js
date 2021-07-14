@@ -9,10 +9,12 @@ router.get('/add', isLoggedIn, (req, res) => {
 
 router.post('/add', isLoggedIn, async (req, res) => {
     const { title, url, description } = req.body;
+    const user_id = req.user.id;
     const newLink = {
         title,
         url,
-        description
+        description,
+        user_id
     };
     await pool_db.query('INSERT INTO links SET ?', [newLink]);
     req.flash('success', 'Link saved successfully')
@@ -20,32 +22,36 @@ router.post('/add', isLoggedIn, async (req, res) => {
 });
 
 router.get('/', isLoggedIn, async (req, res) => {
-    const links =  await pool_db.query('SELECT * FROM links');
+    const user_id = req.user.id;
+    const links =  await pool_db.query('SELECT * FROM links WHERE user_id = ?', [user_id]);
     res.render('links/list', {links: links});
 });
 
 router.get('/delete/:id', isLoggedIn, async (req, res) => {
     const { id } = req.params;
-    await pool_db.query('DELETE FROM links WHERE id = ?', [id]);
+    const user_id = req.user.id;
+    await pool_db.query('DELETE FROM links WHERE id = ? AND user_id = ?', [id, user_id]);
     req.flash('success', 'Link Removed successfully');
     res.redirect('/links');
 });
 
 router.get('/edit/:id', isLoggedIn, async (req, res) => {
     const { id } = req.params;
-    const links = await pool_db.query('SELECT * FROM links WHERE id = ?', [id]);
+    const user_id = req.user.id;
+    const links = await pool_db.query('SELECT * FROM links WHERE id = ? AND user_id ?', [id, user_id]);
     res.render('links/edit', {link: links[0]});
 });
 
 router.post('/edit/:id', isLoggedIn, async (req, res) => {
     const { id } = req.params;
     const { title, url, description } = req.body;
+    const user_id = req.user.id;
     const newLink = {
         title,
         url,
         description
     };
-    await pool_db.query('UPDATE links SET ? WHERE id = ? ', [newLink, id]);
+    await pool_db.query('UPDATE links SET ? WHERE id = ? AND user_id = ?', [newLink, id, user_id]);
     req.flash('success', 'Link Update successfully');
     res.redirect('/links');
 });
