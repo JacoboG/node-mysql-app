@@ -11,7 +11,7 @@ Video: https://www.youtube.com/watch?v=qJ5R9WTW0_E
 Descargar repositorio
 
 ```sh
-git -clone https://github.com/JacoboG/node-mysql-app.git
+git clone https://github.com/JacoboG/node-mysql-app.git
 ```
 
 Entrar al proyecto
