@@ -17,17 +17,4 @@ helpers.matchPassword = async (password, savedPassword) => {
     }
 };
 
-helpers.checkAuthor = async (req, res, next) => {
-    const { id } = req.params;
-        const user_id = req.user.id;
-
-        const links = await pool_db.query('SELECT * FROM links WHERE id = ? AND user_id = ?', [id, user_id]);
-
-        if (links[0]){
-            return next();
-        }
-        req.flash('message', 'You don\'t have permission to update this link');
-        res.redirect('/links')
-}
-
 module.exports = helpers;
