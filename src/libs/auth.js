@@ -1,3 +1,5 @@
+const pool_db = require('../database');
+
 module.exports = {
     /**
      * Check if is Authenticated
