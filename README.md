@@ -24,7 +24,9 @@ Instalar dependencias
 npm install
 ```
 
-NOTA: Antes de correr la aplicación se debe correr el código sql que esta dentro de la carpeta <code>database</code>
+NOTA: Antes de correr la aplicación se debe correr el código sql que esta dentro de la carpeta <code>node-mysql-app/database/db.sql</code>
+
+Verificar Credenciales de Base de Datos en `node-mysql-app/src/database.js`
 
 Correr aplicacion
 ```sh
